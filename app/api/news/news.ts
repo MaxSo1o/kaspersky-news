@@ -10,7 +10,7 @@ export function getNews() {
                 "DOM": "globalsecuritymag.com",
                 "SENT": "negative",
                 "LANG": "en",
-                "AU": [],
+                "AU": ["Max Auesov"],
                 "FAV": "/favicons/e65d69dc71ab539384fcc63062efdd3d.png",
                 "KW": [
                     {

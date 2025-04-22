@@ -1,72 +1,61 @@
-import {IData_SnippetNews} from "@/app/types/types";
 import s from "./NewsBlock.module.css";
+import {IData_SnippetNews} from "@/app/types/types";
 import {GlobalOutlined, TranslationOutlined, UserOutlined} from "@ant-design/icons";
+import {FormatTraffic} from "@/app/components/FormatTraffic";
+import {FormatReach} from "@/app/components/FormatReach";
+import {FormatDate} from "@/app/components/FormatDate";
+import {Button, Flex} from "antd";
+import {Highlights} from "@/app/components/Highlights";
+import {Tags} from "@/app/components/Tags";
 
 export const NewsBlock = (info: IData_SnippetNews) => {
-
-    const formatDate = (date: string) => {
-        const d = new Date(date);
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const day = d.getDate();
-        const month = months[d.getMonth()];
-        const year = d.getFullYear();
-        return `${day} ${month} ${year}`;
-    }
-
-    const formatReach = (reach: number) => {
-        if (reach >= 1000000) {
-            return (reach / 1000000).toFixed(0) + "M";
-        } else if (reach >= 1000) {
-            return (reach / 1000).toFixed(0) + "K";
-        } else {
-            return reach;
-        }
-    }
 
     return (
         <>
             <div className={s['news-block']}>
                 <div className={s['smm-info']}>
-                    <div className={s['date']}>
-                        <span className={s['text']}>{formatDate(info.DP)}</span>
-                    </div>
-                    <div className={s['reach']}>
-                        <span className={s['text']}>{formatReach(info.REACH)} Reach</span>
-                    </div>
-                    <div className={s['traffic']}>
-                        <span className={s['text']}>Top Traffic:</span> <span className={s['text']}>Australia 38%</span>
-                    </div>
+                    <FormatDate date={info.DP}/>
+                    <FormatReach reach={info.REACH}/>
+                    <FormatTraffic traffic={info.TRAFFIC}/>
                 </div>
                 <div className={s['news-title']}>
                     <span className={s['title']}>{info.TI}</span>
                 </div>
                 <div className={s['source']}>
                     <div>
-                        <GlobalOutlined />
-                        <span className={s['website']}>globalsecuritymag.com</span>
+                        <Flex gap={5}>
+                            <GlobalOutlined />
+                            <span className={s['website']} style={{textTransform: "capitalize"}}>{info.DOM}</span>
+                        </Flex>
                     </div>
                     <div>
-                        <span className={s['text']}>Australia</span>
+                        <Flex gap={5}>
+                            <span className={s['text']}>{info.CNTR}</span>
+                        </Flex>
                     </div>
                     <div>
-                        <TranslationOutlined />
-                        <span className={s['text']}>En</span>
+                        <Flex gap={5}>
+                            <TranslationOutlined />
+                            <span className={s['text']} style={{textTransform: "capitalize"}}>{info.LANG}</span>
+                        </Flex>
                     </div>
                     <div>
-                        <UserOutlined />
-                        <span className={s['text']}>Emily C., Taormina A., et al.</span>
+                        <Flex gap={5}>
+                            <UserOutlined />
+                            <span className={s['text']}>Emily C., Taormina A., et al.</span>
+                        </Flex>
                     </div>
                 </div>
-                <div className={s['tags-in-text']}>
-
-                </div>
-                <div className={s['tags']}>
-                    <div className={s['tag']}>
-                        <span className={s['text']}>antivirus</span>
-                    </div>
-                </div>
+                <Highlights highlights={info.HIGHLIGHTS}/>
+                <Tags tags={info.KW}/>
                 <div className={s['original-source']}>
-                    <button className={s['button']}>Original Source</button>
+                    <Button color="default" variant="filled">Original Source</Button>
+                </div>
+                <div className={s['duplicates']}>
+                    <div className={s['text']}>Duplicates:
+                        <span className={s['white']}> 1</span>
+                    </div>
+
                 </div>
             </div>
         </>
