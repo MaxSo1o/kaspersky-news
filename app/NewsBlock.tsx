@@ -1,17 +1,42 @@
 import {IData_SnippetNews} from "@/app/types/types";
 import s from "./NewsBlock.module.css";
 import {GlobalOutlined, TranslationOutlined, UserOutlined} from "@ant-design/icons";
-import {SmmInfo} from "@/app/components/SmmInfo";
-
-interface smmInfo {
-
-}
 
 export const NewsBlock = (info: IData_SnippetNews) => {
+
+    const formatDate = (date: string) => {
+        const d = new Date(date);
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const day = d.getDate();
+        const month = months[d.getMonth()];
+        const year = d.getFullYear();
+        return `${day} ${month} ${year}`;
+    }
+
+    const formatReach = (reach: number) => {
+        if (reach >= 1000000) {
+            return (reach / 1000000).toFixed(0) + "M";
+        } else if (reach >= 1000) {
+            return (reach / 1000).toFixed(0) + "K";
+        } else {
+            return reach;
+        }
+    }
+
     return (
         <>
             <div className={s['news-block']}>
-                <SmmInfo smm={...info}/>
+                <div className={s['smm-info']}>
+                    <div className={s['date']}>
+                        <span className={s['text']}>{formatDate(info.DP)}</span>
+                    </div>
+                    <div className={s['reach']}>
+                        <span className={s['text']}>{formatReach(info.REACH)} Reach</span>
+                    </div>
+                    <div className={s['traffic']}>
+                        <span className={s['text']}>Top Traffic:</span> <span className={s['text']}>Australia 38%</span>
+                    </div>
+                </div>
                 <div className={s['news-title']}>
                     <span className={s['title']}>{info.TI}</span>
                 </div>
