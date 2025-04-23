@@ -1,17 +1,18 @@
 import {getNews} from "@/app/api/news/news";
 import {NewsBlock} from "@/app/NewsBlock";
 import s from "./page.module.css";
+import {IData_SnippetNews} from "@/app/types/types";
 
 export default function Home() {
-  const {news} = getNews();
+  const infoNews: IData_SnippetNews[] = getNews().news;
   return (
       <>
           <div className={s['container']}>
-              {news.map(newsItem =>
-                  <NewsBlock {...newsItem}  key={newsItem.ID} />
+              {infoNews.map(newesItem =>
+                  <NewsBlock {...newesItem}  key={newesItem.ID} />
               )
               }
           </div>
       </>
-  );
+  )
 }

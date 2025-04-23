@@ -85,7 +85,7 @@ export function getNews() {
                 "URL": "https://www.techsecuritydaily.com/Smart-home-devices-risk-unpatched-vulnerabilities,20250308,112233.html",
                 "DP": "2025-03-08T09:15:00",
                 "DOM": "techsecuritydaily.com",
-                "SENT": "negative",
+                "SENT": "positive",
                 "LANG": "en",
                 "AU": ["John Smith"],
                 "FAV": "/favicons/8e4f2a6d1c0b7f5e3d9a2b4c6d8e0f.png",
@@ -116,7 +116,7 @@ export function getNews() {
                 "DOM": "healthitsecurity.com",
                 "SENT": "negative",
                 "LANG": "en",
-                "AU": ["Dr. Emily Chen"],
+                "AU": ["Emily Chen"],
                 "FAV": "/favicons/1a2b3c4d5e6f7g8h9i0j.png",
                 "KW": [
                     {"value": "healthcare", "count": 6},
